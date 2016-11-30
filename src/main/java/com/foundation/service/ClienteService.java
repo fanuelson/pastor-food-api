@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.foundation.dao.ClienteDAO;
 import com.foundation.model.Cliente;
+import com.foundation.validador.ValidadorClienteBuilder;
 
 @Service
 public class ClienteService extends AbstractService{
@@ -17,6 +18,9 @@ public class ClienteService extends AbstractService{
 	}
 	
 	public Cliente save(Cliente cliente) {
+		ValidadorClienteBuilder.newInstance()
+			.validarCampoObrigatorioString("nome", cliente.getNome())
+			.assertValid();
 		return clienteDAO.save(cliente);
 	}
 	

@@ -60,11 +60,7 @@ public class JwtFilter extends GenericFilterBean {
 			response.addHeader(ACCESS_CONTROL_ALLOW_ORIGIN, "*");
 			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 			log.warn("TOKEN NULO");
-		} catch (final Exception ex) {
-			response.addHeader(ACCESS_CONTROL_ALLOW_ORIGIN, "*");
-			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-			log.error("EXCEPTION", ex);
-		}
+		} 
 
 	}
 	

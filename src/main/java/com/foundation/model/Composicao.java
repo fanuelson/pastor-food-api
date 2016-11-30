@@ -2,7 +2,6 @@ package com.foundation.model;
 
 import java.math.BigDecimal;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,7 +25,7 @@ public class Composicao {
 	@JoinColumn(name = "id_produto")
 	private Produto produto;
 
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+	@ManyToOne
 	@JoinColumn(name = "id_insumo")
 	private Insumo insumo;
 

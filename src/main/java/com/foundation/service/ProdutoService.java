@@ -55,11 +55,11 @@ public class ProdutoService extends AbstractService {
 	public Produto save(Produto produto) {
 		montarComposicoes(produto);
 		validar(produto);
-		removerComposicoesAntigas(produto);
+		removerComposicoes(produto);
 		return produtoDAO.save(produto);
 	}
 
-	private void removerComposicoesAntigas(Produto produto) {
+	private void removerComposicoes(Produto produto) {
 		if(produto.getIdProduto()!=null){
 			Produto p = produtoDAO.findOne(produto.getIdProduto());
 			composicaoService.removeAll(p.getComposicoes());
@@ -70,7 +70,8 @@ public class ProdutoService extends AbstractService {
 
 		AbstractValidadorBuilder vpb = ValidadorProdutoBuilder.newInstance()
 			.validarCampoObrigatorio("nome", produto.getNome())
-			.validarCampoObrigatorio("status", produto.getStatus());
+			.validarCampoObrigatorio("status", produto.getStatus())
+			.validarCampoObrigatorio("precoVenda", produto.getPrecoVenda());
 		
 		ValidadorComposicaoBuilder.newInstance()
 			.validarComposicoes(produto.getComposicoes())
