@@ -41,7 +41,7 @@ public class ConsumacaoService extends AbstractService{
 	
 	@Transactional
 	@NeedsCaixa(status = CaixaStatus.ABERTO)
-	public Consumacao registrarConsumacao(BigDecimal quantidadeConsumida, Long idProduto, Long idCliente) {
+	public Consumacao registrarConsumacao(BigDecimal quantidadeConsumida, Long idProduto, Long idCliente, boolean fiado) {
 		Cliente cliente = clienteService.findOne(idCliente);
 		Produto produto = produtoService.findOneFetchComposicoes(idProduto);
 		Caixa caixaAberto = caixaService.findCaixaAberto();
@@ -50,13 +50,27 @@ public class ConsumacaoService extends AbstractService{
 			.validarQuantidadeInsumos(produto, quantidadeConsumida)
 			.assertValid();
 		
-		caixaAberto.aumentarValorAtual(produto.getPrecoVenda().multiply(quantidadeConsumida));
+		if(!fiado) {
+			caixaAberto.aumentarValorAtual(produto.getPrecoVenda().multiply(quantidadeConsumida));
+			bonusService.aumentarOuInserirBonus(cliente, produto, quantidadeConsumida);
+		}
+
 		produto.gastarInsumos(quantidadeConsumida);
 		
-		bonusService.aumentarOuInserirBonus(cliente, produto, quantidadeConsumida);
-		
-		Consumacao consumacao = new Consumacao(quantidadeConsumida, produto, cliente, new Date());
+		Consumacao consumacao = new Consumacao(quantidadeConsumida, produto, cliente, new Date(), fiado);
 		return consumacaoDAO.save(consumacao);
+	}
+	
+	@NeedsCaixa(status = CaixaStatus.ABERTO)
+	@Transactional
+	public Consumacao alterarParaPago(Long idConsumacao) {
+		Consumacao c = consumacaoDAO.findOne(idConsumacao);
+		c.setDevendo(false);
+		Caixa caixaAberto = caixaService.findCaixaAberto();
+		caixaAberto.aumentarValorAtual(c.getProduto().getPrecoVenda().multiply(c.getQuantidadeConsumida()));
+		bonusService.aumentarOuInserirBonus(c.getCliente(), c.getProduto(), c.getQuantidadeConsumida());
+		
+		return c;
 	}
 	
 	@Transactional(value = TxType.NOT_SUPPORTED)

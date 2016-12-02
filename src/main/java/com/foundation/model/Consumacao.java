@@ -29,6 +29,9 @@ public class Consumacao {
 	
 	@Column(name = "data_consumacao")
 	private Date dataConsumacao;
+	
+	@Column(name = "devendo")
+	private boolean devendo;
 
 	@JsonIgnore
 	@ManyToOne
@@ -42,11 +45,12 @@ public class Consumacao {
 	public Consumacao() {
 	}
 
-	public Consumacao(BigDecimal quantidadeConsumida, Produto produto, Cliente cliente, Date dataConsumacao) {
+	public Consumacao(BigDecimal quantidadeConsumida, Produto produto, Cliente cliente, Date dataConsumacao, boolean fiado) {
 		this.quantidadeConsumida = quantidadeConsumida;
 		this.produto = produto;
 		this.cliente = cliente;
 		this.dataConsumacao = dataConsumacao;
+		this.devendo = fiado;
 	}
 	
 	@Override

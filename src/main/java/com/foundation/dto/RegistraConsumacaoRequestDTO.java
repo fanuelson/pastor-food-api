@@ -10,5 +10,6 @@ public class RegistraConsumacaoRequestDTO {
 	private BigDecimal quantidadeConsumida;
 	private Long idProduto;
 	private Long idCliente;
+	private boolean fiado;
 
 }

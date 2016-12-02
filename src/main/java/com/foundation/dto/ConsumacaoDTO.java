@@ -20,6 +20,8 @@ public class ConsumacaoDTO {
 
 	private Produto produto;
 	
+	private boolean devendo;
+	
 	public ConsumacaoDTO() { }
 	
 	public ConsumacaoDTO(Consumacao consumacao) {
@@ -27,6 +29,7 @@ public class ConsumacaoDTO {
 		this.quantidadeConsumida = consumacao.getQuantidadeConsumida();
 		this.dataConsumacao = new DateTime(consumacao.getDataConsumacao()).toString("dd/MM/yyyy HH:mm");
 		this.produto = consumacao.getProduto();
+		this.devendo = consumacao.isDevendo();
 	}
 
 }
