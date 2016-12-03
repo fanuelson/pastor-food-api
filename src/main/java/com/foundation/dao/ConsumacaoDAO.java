@@ -2,6 +2,7 @@ package com.foundation.dao;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -21,4 +22,8 @@ public interface ConsumacaoDAO extends CrudRepository<Consumacao, Long> {
 			+ " WHERE c.cliente.id = ?1"
 			+ " AND c.produto.idProduto = ?2")
 	Consumacao findOneByClienteAndProduto(Long idCliente, Long idProduto);
+	
+	@Modifying
+	@Query("DELETE FROM Consumacao c WHERE c.cliente.id = ?1")
+	void deleteAllByCliente(Long idCliente);
 }

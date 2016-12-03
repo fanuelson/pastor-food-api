@@ -77,4 +77,8 @@ public class ConsumacaoService extends AbstractService{
 	public Page<ConsumacaoDTO> findAllByCliente(Long idCliente, Pageable page) {
 		return consumacaoDAO.findAllByCliente(idCliente, page);
 	}
+	
+	public void deleteAllByCliente(Long idCliente) {
+		consumacaoDAO.deleteAllByCliente(idCliente);
+	}
 }

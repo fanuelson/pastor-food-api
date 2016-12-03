@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -22,5 +23,8 @@ public interface BonusDAO extends CrudRepository<Bonus, Long> {
 	@Query(" SELECT b FROM Bonus b "
 			+ " WHERE b.cliente.id = ?1 ")
 	Page<Bonus> findAllByCliente(Long idCliente, Pageable page);
-	
+
+	@Modifying
+	@Query("DELETE FROM Bonus b WHERE b.cliente.id = ?1")
+	void deleteAllByCliente(Long idCliente);
 }

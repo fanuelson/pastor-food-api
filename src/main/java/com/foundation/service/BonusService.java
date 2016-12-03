@@ -53,4 +53,8 @@ public class BonusService extends AbstractService{
 		bonus.incrementarBonus(quantidadeConsumida);
 		return bonusDAO.save(bonus);
 	}
+	
+	public void deleteAllByCliente(Long idCliente) {
+		bonusDAO.deleteAllByCliente(idCliente);
+	}
 }
