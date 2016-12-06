@@ -16,7 +16,7 @@ import com.foundation.validador.ValidadorFornecedorBuilder;
 
 @Service
 @RequestScope
-public class FornecedorService extends AbstractService {
+public class FornecedorService {
 
 	@Autowired
 	private FornecedorDAO fornecedorDAO;

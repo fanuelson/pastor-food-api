@@ -22,7 +22,7 @@ import com.foundation.model.Produto;
 import com.foundation.validador.ValidadorProdutoBuilder;
 
 @Service
-public class ConsumacaoService extends AbstractService{
+public class ConsumacaoService {
 
 	@Autowired
 	private ConsumacaoDAO consumacaoDAO;

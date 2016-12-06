@@ -13,7 +13,7 @@ import com.foundation.validador.ValidadorComposicaoBuilder;
 
 @Service
 @RequestScope
-public class ComposicaoService extends AbstractService {
+public class ComposicaoService {
 
 	@Autowired
 	private ComposicaoDAO composicaoDAO;

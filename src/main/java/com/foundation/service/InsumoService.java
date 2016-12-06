@@ -24,7 +24,7 @@ import com.foundation.validador.ValidadorInsumoBuilder;
 
 @Service
 @RequestScope
-public class InsumoService extends AbstractService {
+public class InsumoService {
 
 	@Autowired
 	private InsumoDAO insumoDAO;

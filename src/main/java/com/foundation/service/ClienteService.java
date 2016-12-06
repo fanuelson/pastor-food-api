@@ -10,7 +10,7 @@ import com.foundation.model.Cliente;
 import com.foundation.validador.ValidadorClienteBuilder;
 
 @Service
-public class ClienteService extends AbstractService{
+public class ClienteService {
 
 	@Autowired
 	private ClienteDAO clienteDAO;

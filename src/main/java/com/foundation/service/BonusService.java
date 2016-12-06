@@ -16,7 +16,7 @@ import com.foundation.model.Produto;
 import com.foundation.validador.ValidadorBonusBuilder;
 
 @Service
-public class BonusService extends AbstractService{
+public class BonusService {
 
 	@Autowired
 	private BonusDAO bonusDAO;

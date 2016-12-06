@@ -15,7 +15,7 @@ import com.foundation.validador.ValidadorUsuarioBuilder;
 
 @Service
 @RequestScope
-public class UsuarioService extends AbstractService{
+public class UsuarioService {
 	
 	@Autowired
 	private UsuarioDAO usuarioDAO;

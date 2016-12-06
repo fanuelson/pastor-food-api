@@ -17,7 +17,7 @@ import com.foundation.model.Caixa;
 import com.foundation.validador.ValidadorCaixaBuilder;
 
 @Service
-public class CaixaService extends AbstractService{
+public class CaixaService {
 
 	@Autowired
 	private CaixaDAO caixaDAO;

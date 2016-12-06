@@ -22,7 +22,7 @@ import com.foundation.validador.ValidadorProdutoBuilder;
 
 @Service
 @RequestScope
-public class ProdutoService extends AbstractService {
+public class ProdutoService {
 
 	@Autowired
 	private ProdutoDAO produtoDAO;
